@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PersonaService {
+export class PersonService {
 
   URL = 'https://app-portfolio0027.herokuapp.com/persona/';
 

@@ -1,36 +1,52 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { JwtDto } from '../model/jwt-dto';
-import { LoginPerson } from '../model/login-person';
-import { NewPerson } from '../model/new-person';
+
+const TOKEN_KEY = 'AuthToken';
+const USERNAME_KEY = 'AuthUserName';
+const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class TokenService {
 
-  authURL = 'https://app-portfolio0027.herokuapp.com/auth/';
+  roles: Array<string> = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor() { }
 
-  public nuevo(nuevoUsuario: NewPerson): Observable<any> {
-    return this.httpClient.post<any>(this.authURL + 'nuevo', nuevoUsuario);
+  public setToken(token: string): void {
+    window.sessionStorage.removeItem(TOKEN_KEY);
+    window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
-  public login(loginUsuario: LoginPerson): Observable<JwtDto> {
-    return this.httpClient.post<JwtDto>(this.authURL + 'login', loginUsuario);
+  public getToken(): string  {
+    return sessionStorage.getItem(TOKEN_KEY) as string;
   }
 
-  public getUsuarioById(id: number): Observable<LoginPerson>{
-    return this.httpClient.get<LoginPerson>(this.authURL + 'detail/' + id);
- }
+  public setUserName(userName: string): void {
+    window.sessionStorage.removeItem(USERNAME_KEY);
+    window.sessionStorage.setItem(USERNAME_KEY, userName);
+  }
 
- public getEducaciones(): Observable<LoginPerson[]>{
-  return this.httpClient.get<LoginPerson[]>(this.authURL + 'lista');
-}
+  public getUserName(): string  {
+    return sessionStorage.getItem(USERNAME_KEY) as string;
+  }
 
-public getUsuarioByName(nombre: string): Observable<NewPerson>{
-  return this.httpClient.get<NewPerson>(this.authURL + 'detailname/' + nombre);
-}
+  public setAuthorities(authorities: string[]): void {
+    window.sessionStorage.removeItem(AUTHORITIES_KEY);
+    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  }
+
+  public getAuthorities(): string[]  {
+    this.roles = [];
+    if (sessionStorage.getItem(AUTHORITIES_KEY)) {
+      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY) as string).forEach((rolNombre: { rolNombre: string; }) => {
+        this.roles.push(rolNombre.rolNombre);
+      });
+    }
+    return this.roles;
+  }
+
+  public logOut(): void {
+    window.sessionStorage.clear();
+  }
 }
