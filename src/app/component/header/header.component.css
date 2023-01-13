@@ -2,3 +2,9 @@ img{
     height: 4vh;
     width: 5vw;
 }
+
+@media (max-width: 800px){
+    #hide{
+        display: none;
+    }
+}

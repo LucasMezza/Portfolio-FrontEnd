@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Person } from 'src/app/model/person';
+import { PersonService } from 'src/app/service/person.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  person!: Person;
+  constructor(private personService: PersonService) { }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+    this.getPersona();
+    console.log(this.person);
+  }
+
+  getPersona(){
+    this.personService.getPersonas().subscribe(data => {
+ this.person = data[0];
+    })
   }
 
 }
