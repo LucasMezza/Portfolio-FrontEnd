@@ -12,50 +12,50 @@ import { EducacionService } from 'src/app/service/educacion.service';
 
 export class CrearEducationComponent implements OnInit {
 
-  // educacionForm: FormGroup;
-  // educacion: Educacion = {
-  //   id : 0,
-  //   nombre : '',
-  //   fechaDesde: '',
-  //   fechaHasta: '',
-  //   institucion: '',
-  //   informacion: ''
-  // };
+  educacionForm: FormGroup;
+  educacion: Educacion = {
+    id : 0,
+    nombre : '',
+    fechaDesde: '',
+    fechaHasta: '',
+    institucion: '',
+    informacion: ''
+  };
 
-  // constructor( private fb: FormBuilder, private router: Router, private aRoute: ActivatedRoute, private educacionService : EducacionService) { 
-  //   this.educacionForm = this.fb.group({
-  //     id: [''],
-  //     nombre: ['', Validators.required],
-  //     fecha: [''],
-  //     institucion: ['', Validators.required],
-  //     informacion: ['', Validators.required]
-  //   })
+  constructor( private fb: FormBuilder, private router: Router, private aRoute: ActivatedRoute, private educacionService : EducacionService) { 
+    this.educacionForm = this.fb.group({
+      id: [''],
+      nombre: ['', Validators.required],
+      fecha: [''],
+      institucion: ['', Validators.required],
+      informacion: ['', Validators.required]
+    })
 
-  // }
+  }
   
   ngOnInit(): void {
   }
  
-  // agregarEducacion(this: any){
-  //   const EDUCACION: Educacion ={
-  //     id: 0,
-  //     nombre : this.educacionForm.get('nombre')?.value,
-  //     fechaDesde : this.educacionForm.get('fechaDesde')?.value,
-  //     fechaHasta : this.educacionForm.get('fechaHasta')?.value,
-  //     institucion : this.educacionForm.get('institucion')?.value,
-  //     informacion : this.educacionForm.get('informacion')?.value,
-  //   }
+  agregarEducacion(this: any){
+    const EDUCACION: Educacion ={
+      id: 0,
+      nombre : this.educacionForm.get('nombre')?.value,
+      fechaDesde : this.educacionForm.get('fechaDesde')?.value,
+      fechaHasta : this.educacionForm.get('fechaHasta')?.value,
+      institucion : this.educacionForm.get('institucion')?.value,
+      informacion : this.educacionForm.get('informacion')?.value,
+    }
    
-  //   console.log(EDUCACION);
+    console.log(EDUCACION);
     
-  //   this.educacionService.guardarEducacion(EDUCACION).subscribe(() => {
-  //     alert('La educacion fue cargada con exito');
-  //     this.router.navigate(['/portfolio']);
-  //   },
-  //   (error: any) =>{
-  //     console.log(error);
+    this.educacionService.guardarEducacion(EDUCACION).subscribe(() => {
+      alert('La educacion fue cargada con exito');
+      this.router.navigate(['/portfolio']);
+    },
+    (error: any) =>{
+      console.log(error);
       
-  //   });
+    });
 
-  // }
+  }
 }
