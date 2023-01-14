@@ -10,7 +10,7 @@ import { NewPerson } from '../model/new-person';
 })
 export class AuthService {
 
-  authURL = 'https://app-portfolio0027.herokuapp.com/auth/';
+  authURL = 'https://portfolio-backend-production-1688.up.railway.app/auth/';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PersonService {
 
-  URL = 'https://app-portfolio0027.herokuapp.com/persona/';
+  URL = 'https://portfolio-backend-production-1688.up.railway.app/persona/';
 
   constructor(private http:HttpClient) { }
 

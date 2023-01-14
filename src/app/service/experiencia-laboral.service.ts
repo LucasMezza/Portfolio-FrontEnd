@@ -8,7 +8,7 @@ import { ExperienciaLaboral } from '../model/experiencia-laboral';
 })
 export class ExperienciaLaboralService {
 
-  URL = 'https://app-portfolio0027.herokuapp.com/experienciaLaboral/';
+  URL = 'https://portfolio-backend-production-1688.up.railway.app/experienciaLaboral/';
 
   constructor(private http:HttpClient) { }
 

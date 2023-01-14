@@ -9,17 +9,17 @@ import { PersonService } from 'src/app/service/person.service';
 })
 export class AboutMeComponent implements OnInit {
 
-  // persona!: Person;
-  // constructor(private personService: PersonService) { }
+  persona!: Person;
+  constructor(private personService: PersonService) { }
 
   ngOnInit() {
-  //   this.getPersona();
+    this.getPersona();
   }
 
-  // getPersona(){
-  //   this.personService.getPersona(1).subscribe(data => {
-  //     this.persona = data;
-  //   })
-  // }
+  getPersona(){
+    this.personService.getPersona(1).subscribe(data => {
+      this.persona = data;
+    })
+  }
 
 }
